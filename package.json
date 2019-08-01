@@ -4,6 +4,7 @@
   "description": "A snake game written in JS",
   "main": "index.js",
   "scripts": {
+    "start": "webpack-dev-server --config ./webpack.config.js --mode development",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -11,10 +12,18 @@
     "url": "git+https://github.com/cmatian/snakey.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Christopher Matian",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/cmatian/snakey/issues"
   },
-  "homepage": "https://github.com/cmatian/snakey#readme"
+  "homepage": "https://github.com/cmatian/snakey#readme",
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "babel-loader": "^8.0.6",
+    "webpack": "^4.39.0",
+    "webpack-cli": "^3.3.6",
+    "webpack-dev-server": "^3.7.2"
+  }
 }
