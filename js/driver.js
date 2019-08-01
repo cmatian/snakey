@@ -1,4 +1,4 @@
-import Board from '../js/board';
+import Board from './classes/board';
 'use strict';
 
 // Create the board

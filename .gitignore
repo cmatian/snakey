@@ -33,3 +33,8 @@
 *.exe
 *.o
 *.so
+
+# Node Modules #
+################
+node_modules
+bundle.js
