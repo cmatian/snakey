@@ -1,10 +1,23 @@
 import Grid from './classes/grid';
 import Snake from './classes/snake';
+import Food from './classes/food';
 'use strict';
 
+
+// Grid Size
+const size = 9;
+
 // Create required instances
-const board = new Grid(9); // Board Instance
+const board = new Grid(size); // Board Instance
 const snake = new Snake(board.gridCenter); // Snake Instance
+const food = new Food(size, size); // Food Instance
+
+const state = {
+    snake: {
+        x: snake.getX,
+        y: snake.getY
+    }
+};
 
 board.printGrid();
 
@@ -40,9 +53,12 @@ const keyHandler = (event) => {
 
     console.log(snake.getY, snake.getX);
 
-    setTimeout(() => {
-        board.updateGrid(snake.getX, snake.getY, oldX, oldY);
-    }, 0);
+    board.updateGrid(snake.getX, snake.getY, oldX, oldY);
+
+
+    state.snake.x = snake.getX;
+    state.snake.y = snake.getY;
+    console.log(state.snake);
 };
 
 document.addEventListener("keyup", (event) => {
