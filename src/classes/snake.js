@@ -19,15 +19,8 @@ class Snake {
         // Track Size and Color
         this.size = size;
         this.color = color;
-        // Track Body of the Snake
-        this.body = [
-            {
-                x: position,
-                y: position,
-                index: 0,
-                pointer: null
-            }
-        ];
+        // Track the body of the Snake
+        this.body = [];
     };
 
     /* Methods */

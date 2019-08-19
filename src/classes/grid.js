@@ -12,6 +12,8 @@ class Grid {
         this.grid = null;
     }
 
+    /* Methods */
+
     // Create grid needs to initialize the snake's origin, as well as the food's origin
     createGrid(snake, food) {
         // Generate the grid as a 2d array
@@ -40,13 +42,12 @@ class Grid {
     // Currently only handles updating a single size snake position
     // Will update this in the future to something that can handle larger bodies.
     updateGrid(snake, food) {
-        // Update the Food Position in the Matrix
-        this.grid[food.oy][food.ox] = ' ';
-        this.grid[food.y][food.x] = 'o';
-
         // Update the Snake Position in the Matrix
         this.grid[snake.oy][snake.ox] = ' ';
         this.grid[snake.y][snake.x] = 'x';
+
+        // Update the Food Position in the Matrix
+        this.grid[food.y][food.x] = 'o';
 
         this.printGrid();
     }
@@ -70,7 +71,7 @@ class Grid {
         console.log(render);
     }
 
-    /* Get Methods for Grid Class */
+    /* Get Functions for Grid Class */
     get getGridCenter() {
         return Math.floor(this.size / 2);
     }

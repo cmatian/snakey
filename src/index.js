@@ -3,7 +3,6 @@ import Snake from './classes/snake';
 import Food from './classes/food';
 'use strict';
 
-
 // Grid Size
 const size = 9;
 
@@ -20,7 +19,7 @@ board.printGrid();
 
 const keyHandler = (event) => {
 
-    // Track the snake's old position
+    // Update the snake's old position
     snake.updateOldXY();
 
     // Move up
@@ -51,12 +50,14 @@ const keyHandler = (event) => {
     // Clear the console
     console.clear();
 
-    // Check if the snake landed on the food tile
-    if(snake.x === food.x && snake.y === food.y) {
-        food.newPosition(snake);
-    }
-
+    console.log(snake);
     console.log(food);
+
+    // Check if the snake landed on the food tile
+    // If it did move the foodtile position
+    if(snake.x === food.x && snake.y === food.y) {
+        food.newRandomPosition(snake);
+    }
 
     // Update the Grid with the new positions
     board.updateGrid(snake, food);
