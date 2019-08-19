@@ -8,44 +8,46 @@ class Grid {
      *  - grid
      **/
     constructor(size) {
-        this.size = size; // size of the board
-        this.grid = this.createGrid(); // Generate the Grid
+        this.size = size; // Size of the board
+        this.grid = null;
     }
 
     // Create grid needs to initialize the snake's origin, as well as the food's origin
-    createGrid(food = null) {
-        let middle = this.gridCenter;
+    createGrid(snake, food) {
+        // Generate the grid as a 2d array
         const grid = [];
         for(let i = 0; i < this.size; i++) {
             grid.push([]);
             for(let j = 0; j < this.size; j++) {
-                if(!food) {
-                    console.log('test');
-                }
-
-                if(i === middle && j === middle) {
-                    grid[i].push('x');
-                    continue;
-                }
                 grid[i].push(' ');
             }
         }
-        return grid;
+
+        // Set the Snake and Food initial positions
+        grid[snake.y][snake.x] = 'x';
+        grid[food.y][food.x] = 'o';
+
+        // Update the snake's grid property
+        this.grid = grid;
     }
 
     // Should probably be moved to some class that handles moves and validates them
     validateMove(x) {
-        // Return from out of bound entries
+        // Return false from out of bound entries
         return !(x < 0 || x >= this.size);
     }
 
     // Currently only handles updating a single size snake position
     // Will update this in the future to something that can handle larger bodies.
-    updateGrid(x, y, ox, oy) {
-        this.grid[oy][ox] = ' ';
-        this.grid[y][x] = 'x';
+    updateGrid(snake, food) {
+        // Update the Food Position in the Matrix
+        this.grid[food.oy][food.ox] = ' ';
+        this.grid[food.y][food.x] = 'o';
 
-        // Print the updated grid
+        // Update the Snake Position in the Matrix
+        this.grid[snake.oy][snake.ox] = ' ';
+        this.grid[snake.y][snake.x] = 'x';
+
         this.printGrid();
     }
 
@@ -57,10 +59,10 @@ class Grid {
             parent.forEach((child) => {
                 if(child === 'o') {
                     // Render Food Position
-                    childString += '[O]';
+                    childString += '[o]';
                 } else {
                     // Space or Snake
-                    childString += (child === ' ') ? '[ ]' : '[X]';
+                    childString += (child === ' ') ? '[ ]' : '[x]';
                 }
             });
             render += (childString + '\n');
@@ -69,7 +71,7 @@ class Grid {
     }
 
     /* Get Methods for Grid Class */
-    get gridCenter() {
+    get getGridCenter() {
         return Math.floor(this.size / 2);
     }
 }

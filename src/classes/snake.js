@@ -10,10 +10,16 @@ The head of the snake always points to null
 
 class Snake {
     constructor(position, size = 1, color = '#35d47a') {
+        // Track Current Snake Position
         this.x = position;
         this.y = position;
+        // Track Old Snake Position
+        this.ox = this.getX;
+        this.oy = this.getY;
+        // Track Size and Color
         this.size = size;
         this.color = color;
+        // Track Body of the Snake
         this.body = [
             {
                 x: position,
@@ -27,6 +33,11 @@ class Snake {
     /* Methods */
     updateSize() {
         this.size = this.size + 1;
+    }
+
+    updateOldXY() {
+        this.ox = this.getX;
+        this.oy = this.getY;
     }
 
     /* Get Snake Properties */

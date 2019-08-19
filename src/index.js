@@ -9,22 +9,19 @@ const size = 9;
 
 // Create required instances
 const board = new Grid(size); // Board Instance
-const snake = new Snake(board.gridCenter); // Snake Instance
-const food = new Food(size, size); // Food Instance
+const snake = new Snake(board.getGridCenter); // Snake Instance
+const food = new Food(size, snake); // Food Instance
 
-const state = {
-    snake: {
-        x: snake.getX,
-        y: snake.getY
-    }
-};
+// Generate the Grid
+board.createGrid(snake, food);
 
+// Render the Grid
 board.printGrid();
 
 const keyHandler = (event) => {
 
-    const oldX = snake.getX,
-          oldY = snake.getY;
+    // Track the snake's old position
+    snake.updateOldXY();
 
     // Move up
     if(event.keyCode === 38) {
@@ -51,14 +48,18 @@ const keyHandler = (event) => {
         }
     }
 
-    console.log(snake.getY, snake.getX);
+    // Clear the console
+    console.clear();
 
-    board.updateGrid(snake.getX, snake.getY, oldX, oldY);
+    // Check if the snake landed on the food tile
+    if(snake.x === food.x && snake.y === food.y) {
+        food.newPosition(snake);
+    }
 
+    console.log(food);
 
-    state.snake.x = snake.getX;
-    state.snake.y = snake.getY;
-    console.log(state.snake);
+    // Update the Grid with the new positions
+    board.updateGrid(snake, food);
 };
 
 document.addEventListener("keyup", (event) => {
