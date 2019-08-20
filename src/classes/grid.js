@@ -43,8 +43,12 @@ class Grid {
     // Will update this in the future to something that can handle larger bodies.
     updateGrid(snake, food) {
         // Update the Snake Position in the Matrix
-        this.grid[snake.oy][snake.ox] = ' ';
-        this.grid[snake.y][snake.x] = 'x';
+
+        // 1. Using the snake body we need to loop through it and set the new positions
+        snake.body.forEach((item) => {
+            this.grid[item.oy][item.ox] = ' ';
+            this.grid[item.y][item.x] = 'x'
+        });
 
         // Update the Food Position in the Matrix
         this.grid[food.y][food.x] = 'o';

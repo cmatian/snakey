@@ -54,9 +54,12 @@ const keyHandler = (event) => {
     console.log(food);
 
     // Check if the snake landed on the food tile
-    // If it did move the foodtile position
+    // If it did
+    //      - Move the food object to a new tile position
+    //      - Generate a new snake object to push to the original snake object
     if(snake.x === food.x && snake.y === food.y) {
         food.newRandomPosition(snake);
+        snake.createNewSnake(new Snake);
     }
 
     // Update the Grid with the new positions

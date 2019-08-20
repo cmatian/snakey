@@ -13,24 +13,49 @@ class Snake {
         // Track Current Snake Position
         this.x = position;
         this.y = position;
+
         // Track Old Snake Position
         this.ox = this.getX;
         this.oy = this.getY;
+
         // Track Size and Color
         this.size = size;
         this.color = color;
+
+        this.pointer = null;
+
         // Track the body of the Snake
-        this.body = [];
+        this.body = [this];
     };
 
     /* Methods */
+
+    // Update the size of the snake
     updateSize() {
         this.size = this.size + 1;
     }
 
+    // Update the previous position of the snake
     updateOldXY() {
         this.ox = this.getX;
         this.oy = this.getY;
+    }
+
+    // Extend the snake body
+    createNewSnake(snake) {
+        // Update the size of the master class snake
+        this.updateSize();
+
+        // Update and/or generate the properties of the sub-class snake parameter
+        snake.size = this.getSize;
+        snake.x = this.getX;
+        snake.y = this.getY + 1;
+        snake.ox = snake.getX;
+        snake.oy = snake.getY;
+        snake.pointer = this.body[snake.size - 1]; // Set the pointer to the next time
+
+        // Push the newly generated snake to the array
+        this.body.push(snake);
     }
 
     /* Get Snake Properties */
@@ -61,6 +86,10 @@ class Snake {
 
     set setColor(hex) {
         this.color = hex;
+    }
+
+    set setSize(int) {
+        this.size = int;
     }
 }
 
