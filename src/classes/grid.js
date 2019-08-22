@@ -9,13 +9,13 @@ class Grid {
      **/
     constructor(size) {
         this.size = size; // Size of the board
-        this.grid = null;
+        this.grid = this.createGrid(); // Generate the Board
     }
 
     /* Methods */
 
     // Create grid needs to initialize the snake's origin, as well as the food's origin
-    createGrid(snake, food) {
+    createGrid() {
         // Generate the grid as a 2d array
         const grid = [];
         for(let i = 0; i < this.size; i++) {
@@ -25,12 +25,8 @@ class Grid {
             }
         }
 
-        // Set the Snake and Food initial positions
-        grid[snake.y][snake.x] = 'x';
-        grid[food.y][food.x] = 'o';
-
-        // Update the snake's grid property
-        this.grid = grid;
+        // Return the initialized grid
+        return grid;
     }
 
     // Should probably be moved to some class that handles moves and validates them

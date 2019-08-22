@@ -49,7 +49,7 @@ class Snake {
         // Update and/or generate the properties of the sub-class snake parameter
         snake.size = this.getSize;
         snake.x = this.getX;
-        snake.y = this.getY + 1;
+        snake.y = this.getY;
         snake.ox = snake.getX;
         snake.oy = snake.getY;
         snake.pointer = this.body[snake.size - 1]; // Set the pointer to the next time

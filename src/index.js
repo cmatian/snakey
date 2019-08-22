@@ -9,13 +9,10 @@ const size = 9;
 // Create required instances
 const board = new Grid(size); // Board Instance
 const snake = new Snake(board.getGridCenter); // Snake Instance
-const food = new Food(size, snake); // Food Instance
-
-// Generate the Grid
-board.createGrid(snake, food);
+const food = new Food(size, board); // Food Instance
 
 // Render the Grid
-board.printGrid();
+board.updateGrid(snake, food);
 
 const keyHandler = (event) => {
 
@@ -58,7 +55,7 @@ const keyHandler = (event) => {
     //      - Move the food object to a new tile position
     //      - Generate a new snake object to push to the original snake object
     if(snake.x === food.x && snake.y === food.y) {
-        food.newRandomPosition(snake);
+        food.newRandomPosition(board);
         snake.createNewSnake(new Snake);
     }
 
