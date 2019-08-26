@@ -3,8 +3,12 @@ import Snake from './classes/snake';
 import Food from './classes/food';
 'use strict';
 
-// Grid Size
+// Grid Size - MUST BE ODD
 const size = 3;
+
+if(size % 2 === 0 || size <= 1) {
+    throw new Error("The size constant must be an odd integer and/or greater than one.");
+}
 
 // Create required instances
 const board = new Grid(size); // Board Instance
