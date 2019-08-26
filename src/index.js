@@ -4,7 +4,7 @@ import Food from './classes/food';
 'use strict';
 
 // Grid Size
-const size = 9;
+const size = 3;
 
 // Create required instances
 const board = new Grid(size); // Board Instance
@@ -47,9 +47,6 @@ const keyHandler = (event) => {
     // Clear the console
     console.clear();
 
-    console.log(snake);
-    console.log(food);
-
     // Check if the snake landed on the food tile
     // If it did
     //      - Move the food object to a new tile position
@@ -61,6 +58,11 @@ const keyHandler = (event) => {
 
     // Update the Grid with the new positions
     board.updateGrid(snake, food);
+
+    // Reduce the available space
+    console.log(snake);
+    console.log(food);
+    console.log(board);
 };
 
 document.addEventListener("keyup", (event) => {

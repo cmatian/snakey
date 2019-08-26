@@ -9,6 +9,7 @@ class Grid {
      **/
     constructor(size) {
         this.size = size; // Size of the board
+        this.space = size * size; // Total empty space
         this.grid = this.createGrid(); // Generate the Board
     }
 
@@ -40,7 +41,7 @@ class Grid {
     updateGrid(snake, food) {
         // Update the Snake Position in the Matrix
 
-        // 1. Using the snake body we need to loop through it and set the new positions
+        // Using the snake body we need to loop through it and set the new positions
         snake.body.forEach((item) => {
             this.grid[item.oy][item.ox] = ' ';
             this.grid[item.y][item.x] = 'x'
@@ -49,7 +50,12 @@ class Grid {
         // Update the Food Position in the Matrix
         this.grid[food.y][food.x] = 'o';
 
+        // Print the current grid
         this.printGrid();
+    }
+
+    reduceSpace() {
+        this.space = this.space - 1;
     }
 
     // Purely for testing until I set up a means to render the board in the DOM

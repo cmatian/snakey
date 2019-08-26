@@ -15,8 +15,8 @@ class Food {
         this.newRandomPosition(board);
     }
 
-    // Returns and object containing an X coordinate and a Y coordinate of the -> calls evaluatePosition();
-    generateRandomPosition(max, board) {
+    // Returns and object containing an X coordinate and a Y coordinate
+    generateRandomPosition(max, board, ox, oy) {
 
         const min = 0;
         max = Math.floor(max);
@@ -26,12 +26,25 @@ class Food {
         The two loops run at o(n^2) efficiency. Can be evaluated at o(n).
          */
 
-        // Make sure that new food position is never on top of the snake tile
+        /*
+        Set the new position ensuring that it's not on top of a snake tile and it's not over its
+        its old position.
+         */
+
         let x, y;
         do {
+
+            if(board.space <= 0) {
+                throw new Error('No more board space.');
+            }
+
             x = Math.floor(Math.random() * (max - min)) + min;
             y = Math.floor(Math.random() * (max - min)) + min;
-        } while(board.grid[y][x] === 'x');
+
+        } while(board.grid[y][x] === 'x' || (x === ox && y === oy));
+
+        // Reduce the available board space (means that there's no room for the food tile)
+        board.reduceSpace();
 
         return {
             x: x,
@@ -44,7 +57,7 @@ class Food {
     // Triggers the generation of a new position -> calls generateRandomPosition();
     newRandomPosition(board) {
         // Generate a new random position
-        let position = this.generateRandomPosition(this.size, board);
+        let position = this.generateRandomPosition(this.size, board, this.x, this.y);
 
         // Update the current positions
         this.x = position.x;

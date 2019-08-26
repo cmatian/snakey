@@ -24,7 +24,7 @@ class Snake {
 
         this.pointer = null;
 
-        // Track the body of the Snake
+        // Track the body of the Snake - master snake starts as the head of the list
         this.body = [this];
     };
 
@@ -52,7 +52,7 @@ class Snake {
         snake.y = this.getY;
         snake.ox = snake.getX;
         snake.oy = snake.getY;
-        snake.pointer = this.body[snake.size - 1]; // Set the pointer to the next time
+        snake.pointer = this.body[snake.size - 1]; // Set the pointer to the next item in the list
 
         // Push the newly generated snake to the array
         this.body.push(snake);
