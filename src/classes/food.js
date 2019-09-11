@@ -21,10 +21,7 @@ class Food {
         const min = 0;
         max = Math.floor(max);
 
-        /* Note:
-        It will be more efficient to directly check the tile rather than loop through the snake body.
-        The two loops run at o(n^2) efficiency. Can be evaluated at o(n).
-         */
+        let loop = 0;
 
         /*
         Set the new position ensuring that it's not on top of a snake tile and it's not over its
@@ -33,6 +30,13 @@ class Food {
 
         let x, y;
         do {
+
+            loop++;
+
+            // Hard stop loops that exceed 50,000 loops
+            if(loop === 500000) {
+                throw new Error("Fatal Error - do-while loop exceeded 50,000 loops");
+            }
 
             if(board.space <= 0) {
                 throw new Error('No more board space.');
@@ -56,6 +60,7 @@ class Food {
 
     // Triggers the generation of a new position -> calls generateRandomPosition();
     newRandomPosition(board) {
+
         // Generate a new random position
         let position = this.generateRandomPosition(this.size, board, this.x, this.y);
 

@@ -1,30 +1,25 @@
 // Direction Class
 'use strict';
 
-/**
- * If Snake is going:
- * UP -> Left / Right
- * DOWN -> Left / Right
- * LEFT -> Up / Down
- * RIGHT -> Up / Down
- *
- */
+
 
 class Direction {
-    constructor(n, e, s, w) {
-        this.n = n;
-        this.e = e;
-        this.s = s;
-        this.w = w;
-        this.direction = null;
+    constructor(direction = null) {
+        this.direction = direction;
     }
 
-    getDirection(signal) {
-
+    get getDirection() {
+        return this.direction;
     }
 
-    returnDirection() {
+    set setDirection(string) {
+        if(typeof string !== "string") {
+            throw new Error("Invalid direction. Must be of type string.");
+        }
 
+        if(string === "n" || string === "e" || string === "s" || string === "w") {
+            this.direction = string;
+        }
     }
 }
 

@@ -5,12 +5,15 @@ class Grid {
     /**
      * Board Constructor
      *  - size
+     *  - space
      *  - grid
+     *  - available
      **/
     constructor(size) {
         this.size = size; // Size of the board
         this.space = size * size; // Total empty space
-        this.grid = this.createGrid(); // Generate the Board
+        this.grid = this.createGrid(); // Initialize the grid
+        this.available = [];
     }
 
     /* Methods */
@@ -39,12 +42,10 @@ class Grid {
     // Currently only handles updating a single size snake position
     // Will update this in the future to something that can handle larger bodies.
     updateGrid(snake, food) {
-        // Update the Snake Position in the Matrix
-
         // Using the snake body we need to loop through it and set the new positions
         snake.body.forEach((item) => {
             this.grid[item.oy][item.ox] = ' ';
-            this.grid[item.y][item.x] = 'x'
+            this.grid[item.y][item.x] = 'x';
         });
 
         // Update the Food Position in the Matrix
